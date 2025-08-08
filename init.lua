@@ -90,8 +90,19 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Exit insert mode by pressing 'jj'
 vim.keymap.set('i', 'jj', '<Esc>')
 
+-- Diagnostic Config
+-- Always open float when jumping between diagnostic messages
+vim.diagnostic.config {
+  jump = { float = true },
+}
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- stylua: ignore start
+vim.keymap.set('n', '<leader>pd', function() vim.diagnostic.jump { count =  1 } end, { desc = '[P]revious [D]iagnostic' })
+vim.keymap.set('n', '<leader>nd', function() vim.diagnostic.jump { count = -1 } end, { desc = '[N]ext [D]iagnostic' })
+-- stylua: ignore end
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
